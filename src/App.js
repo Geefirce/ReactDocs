@@ -44,10 +44,8 @@ export default function App() {
   }
 
   function handleSelection(friend) {
-    setSelectedFriend((curSelected) =>
-      curSelected?.id === friend.id ? null : friend
-    );
-
+    setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
+    setShowAddFriend(false);
     // setSelectedFriend(false);
   }
 
@@ -77,6 +75,7 @@ export default function App() {
           {showAddFriend ? "Close" : "Add friend"}
         </Button>
       </div>
+      {/* conditional rednering  */}
       {selectedFriend && (
         <FormSplitBill
           selectedFriend={selectedFriend}
