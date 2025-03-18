@@ -50,6 +50,7 @@ export default function App() {
   }
 
   function handleSplitBill(value) {
+    console.log(value);
     setFriends((friends) =>
       friends.map((friend) =>
         friend.id === selectedFriend.id
@@ -76,6 +77,7 @@ export default function App() {
         </Button>
       </div>
       {/* conditional rednering  */}
+
       {selectedFriend && (
         <FormSplitBill
           selectedFriend={selectedFriend}
@@ -182,9 +184,6 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    // gurd clause to check if bill & friendbill is present
-
     if (!bill || !paidByFriend) return;
     onSplitBill(whoIsPaying === "user" ? paidByFriend : -paidByUser);
   }
@@ -206,6 +205,7 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
         value={paidByUser}
         onChange={(e) =>
           setPiadByUser(
+            //amazing logic here checking if the input vale of user is grater than bill. if it is then revert  to what the initial user value then if its not put the current value.
             Number(e.target.value) > bill
               ? paidByFriend
               : Number(e.target.value)
